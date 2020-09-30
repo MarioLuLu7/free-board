@@ -2,13 +2,13 @@
 import { defineComponent } from 'vue';
 import MainLayout from '@/layout/MainLayout.vue';
 import { mod1Register } from '@/store/registerPage';
-import { useSideStore } from '@/store/side';
+import fb from '@/store/fb';
 
 export default defineComponent({
   setup() {
     setTimeout(() => {
-      useSideStore.openPage(null, 200, mod1Register.page1, {
-        name: 1,
+      fb.openSidePage(null, mod1Register.page1, 200, {
+        name: '123',
       });
     }, 2000);
     return () => <MainLayout />;

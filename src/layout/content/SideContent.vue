@@ -33,7 +33,6 @@ export default defineComponent({
       ismove: false,
     });
     const move = (e: any) => {
-      state.ismove = true;
       // 设置可移动属性
       const dragDoms = e.path.filter((item: any) => item.attributes && item.attributes['fb-drag']);
       dragDoms.forEach((item: HTMLBaseElement) => {
@@ -51,7 +50,8 @@ export default defineComponent({
         }
       });
       document.onmousemove = (e) => {
-        const leftx = dom.style.left.split('px')[0];
+        state.ismove = true;
+        const leftx = dom.offsetLeft;
         let left = Number(leftx) + e.movementX;
         if (left <= maxWidth * -1) {
           left = maxWidth * -1;
@@ -78,14 +78,14 @@ export default defineComponent({
       >
         {list.value.map((item, index) => {
           const { page, width } = item.pageInfo;
-          const ItemComp = page;
           const props = item.params;
           const attrs: unknown = {
             fbindex: index,
+            fbtype: item.pageInfo.type,
           };
           return (
-            <div class="fb-side-item" style={{ width: width + 'px' }} key={index}>
-              <ItemComp {...props} {...attrs} />
+            <div class="fb-side-item" style={{ width: width + 'px' }}>
+              <page {...props} {...attrs} />
             </div>
           );
         })}

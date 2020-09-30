@@ -1,13 +1,15 @@
 import { userState } from '@/hooks/store';
 import { DefineComponent } from 'vue';
+import { EnumPageType } from '@/enums';
 
-export interface IpageInfo {
+export interface IsidePageInfo {
   width: number;
+  type: EnumPageType;
   page: DefineComponent;
 }
 
 export interface IsideItem {
-  pageInfo: IpageInfo;
+  pageInfo: IsidePageInfo;
   params: unknown;
 }
 
@@ -22,7 +24,7 @@ const initState: Istate = {
 const SideStore = () => {
   const { state, setState, nextState } = userState(initState);
 
-  const openPage = (ctx: { attrs: any } | null, width: number, page: DefineComponent, params: Record<string, any>) => {
+  const openPage = (ctx: { attrs: any } | null, page: DefineComponent, width: number, params: Record<string, any>) => {
     const index = ctx?.attrs?.fbindex || 0;
     nextState((stateData) => {
       const ind = index + 1;
@@ -31,6 +33,7 @@ const SideStore = () => {
         pageInfo: {
           width,
           page,
+          type: EnumPageType.Side,
         },
         params,
       });
