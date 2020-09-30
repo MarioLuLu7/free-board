@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { computed, defineComponent, ref, watchEffect, nextTick, reactive } from 'vue';
-import { useSideStore } from '@/store/side';
+import { useSideStore } from '../../use-store/side';
 
 export default defineComponent({
   setup() {

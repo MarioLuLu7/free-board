@@ -1,8 +1,8 @@
 <script lang="tsx">
 import { defineComponent } from 'vue';
-import MainLayout from '@/layout/MainLayout.vue';
+import MainLayout from '@/fb/layout/MainLayout.vue';
 import { mod1Register } from '@/store/registerPage';
-import fb from '@/store/fb';
+import fb from '@/fb/use-store';
 
 export default defineComponent({
   setup() {

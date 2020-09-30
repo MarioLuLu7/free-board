@@ -1,7 +1,7 @@
 <script lang="tsx">
 import { defineComponent } from 'vue';
 
-import fb from '@/store/fb';
+import fb from '@/fb/use-store';
 import { mod1Register } from '@/store/registerPage';
 
 export default defineComponent({

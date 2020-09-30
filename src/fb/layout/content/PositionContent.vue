@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { computed, defineComponent, ref } from 'vue';
-import { usepositionStore } from '@/store/position';
+import { usepositionStore } from '../../use-store/position';
 
 export default defineComponent({
   setup() {

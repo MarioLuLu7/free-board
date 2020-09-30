@@ -1,7 +1,7 @@
 import { useSideStore } from './side';
 import { usepositionStore } from './position';
 
-import { EnumPageType } from '@/enums';
+import { EnumPageType } from '../enums';
 
 export const closePage = (ctx: { attrs: any } | null) => {
   const pageType = ctx?.attrs?.fbtype || EnumPageType.Side;

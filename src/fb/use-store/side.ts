@@ -1,6 +1,6 @@
-import { userState } from '@/hooks/store';
+import { userState } from '../hooks/store';
 import { DefineComponent } from 'vue';
-import { EnumPageType } from '@/enums';
+import { EnumPageType } from '../enums';
 
 export interface IsidePageInfo {
   width: number;
