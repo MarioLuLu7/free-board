@@ -1,27 +1,33 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-</template>
-
-<script lang="ts">
+<script lang="tsx">
 import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import MainLayout from '@/layout/MainLayout.vue';
+import { mod1Register } from '@/store/registerPage';
+import { useSideStore } from '@/store/side';
 
 export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  setup() {
+    setTimeout(() => {
+      useSideStore.openPage(null, 200, mod1Register.page1, {
+        name: 1,
+      });
+    }, 2000);
+    return () => <MainLayout />;
+  },
 });
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+  width: 100%;
+  * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 }
 </style>
