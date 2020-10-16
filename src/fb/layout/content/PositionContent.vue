@@ -1,5 +1,6 @@
 <script lang="tsx">
 import { computed, defineComponent, ref } from 'vue';
+import { useScreenStore } from '../../use-store/screen';
 import { usepositionStore } from '../../use-store/position';
 
 export default defineComponent({
@@ -8,7 +9,7 @@ export default defineComponent({
 
     const divs = ref([]);
 
-    const styles = ref([])
+    const styles = ref([]);
 
     // 移动
     const move = (e: any, index: number) => {
@@ -30,8 +31,8 @@ export default defineComponent({
         dom.style.top = top + 'px';
         (styles.value[index] as any) = {
           left: dom.style.left,
-          top: dom.style.top
-        }
+          top: dom.style.top,
+        };
       };
       document.onmouseup = () => {
         document.onmousemove = null;
@@ -45,7 +46,7 @@ export default defineComponent({
           const { page, style } = item.pageInfo;
           const ItemComp = page;
           if (!page) {
-            return ''
+            return '';
           }
           const props = item.params;
           const attrs: unknown = {
@@ -55,7 +56,11 @@ export default defineComponent({
           return (
             <div
               class="fb-position-item"
-              style={{...style, ...(styles.value[index] as object || {})}}
+              style={{
+                ...style,
+                ...((styles.value[index] as object) || {}),
+                ...useScreenStore.getScreeen(item.pageInfo.screen),
+              }}
               onMousedown={(e) => {
                 move(e, index);
               }}
@@ -78,6 +83,7 @@ export default defineComponent({
   .fb-position-item {
     position: absolute;
     overflow: hidden;
+    background: #fff;
   }
 }
 </style>

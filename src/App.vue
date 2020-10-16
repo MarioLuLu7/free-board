@@ -1,17 +1,14 @@
 <script lang="tsx">
 import { defineComponent } from 'vue';
-import MainLayout from '@/fb/layout/MainLayout.vue';
-import { mod1Register } from '@/store/registerPage';
-import fb from '@/fb/use-store';
+
+import fb from '@/fb';
+
+import HeaderLayout from '@/layout/HeaderLayout.vue';
+import SiderLayout from '@/layout/SiderLayout.vue';
 
 export default defineComponent({
   setup() {
-    setTimeout(() => {
-      fb.openSidePage(null, mod1Register.page1, 200, {
-        name: '123',
-      });
-    }, 2000);
-    return () => <MainLayout />;
+    return () => <fb.Layout header={<HeaderLayout />} side={<SiderLayout />} />;
   },
 });
 </script>
@@ -24,10 +21,5 @@ export default defineComponent({
   color: #2c3e50;
   height: 100%;
   width: 100%;
-  * {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
 }
 </style>

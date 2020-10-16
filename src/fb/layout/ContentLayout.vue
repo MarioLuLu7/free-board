@@ -7,7 +7,7 @@ import PositionContent from './content/PositionContent.vue';
 export default defineComponent({
   setup() {
     return () => (
-      <div class="fb-content-layout-container">
+      <div class="fb-content-layout-container" id="fb-content-layout">
         <PositionContent />
         <SideContent />
       </div>

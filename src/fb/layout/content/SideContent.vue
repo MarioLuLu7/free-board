@@ -1,6 +1,7 @@
 <script lang="tsx">
 import { computed, defineComponent, ref, watchEffect, nextTick, reactive } from 'vue';
 import { useSideStore } from '../../use-store/side';
+import { useScreenStore } from '../../use-store/screen';
 
 export default defineComponent({
   setup() {
@@ -10,7 +11,7 @@ export default defineComponent({
 
     // 超出自动左移
     watchEffect(() => {
-      if (list.value && list.value.length) {
+      if (list.value) {
         let width = 0;
         list.value.forEach((item) => {
           width += item.pageInfo.width;
@@ -83,8 +84,12 @@ export default defineComponent({
             fbindex: index,
             fbtype: item.pageInfo.type,
           };
+
           return (
-            <div class="fb-side-item" style={{ width: width + 'px' }}>
+            <div
+              class="fb-side-item"
+              style={{ width: width + 'px', ...useScreenStore.getScreeen(item.pageInfo.screen) }}
+            >
               <page {...props} {...attrs} />
             </div>
           );
@@ -102,6 +107,7 @@ export default defineComponent({
   .fb-side-item {
     height: 100%;
     float: left;
+    background: #fff;
   }
 }
 </style>

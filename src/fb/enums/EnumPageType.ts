@@ -1,4 +1,4 @@
 export enum EnumPageType {
-  'Side',
-  'Position',
+  Side = 'Side',
+  Position = 'Position',
 }
